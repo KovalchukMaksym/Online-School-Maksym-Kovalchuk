@@ -7,6 +7,8 @@ public class Main {
         Lection firstLection = new Lection();
         Lection secondLection = new Lection();
         Lection thirdLection = new Lection();
+        Lection fourthLection = new Lection();
+        Lection fifthLection = new Lection();
         System.out.println(Lection.ID);
     }
 }
