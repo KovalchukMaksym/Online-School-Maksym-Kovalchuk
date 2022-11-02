@@ -15,6 +15,13 @@ public class Lection {
         counter++;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Lection{" +
+                "lectionName='" + lectionName + '\'' +
+                ", id=" + id +
+                ", homeWork='" + homeWork + '\'' +
+                ", additionalMaterials='" + additionalMaterials + '\'' +
+                '}';
+    }
 }
