@@ -4,7 +4,6 @@ import com.acedemy.cources.Course;
 import com.acedemy.cources.Lection;
 import com.acedemy.cources.Student;
 import com.acedemy.cources.Teacher;
-import jdk.jfr.Category;
 
 import java.util.Scanner;
 
