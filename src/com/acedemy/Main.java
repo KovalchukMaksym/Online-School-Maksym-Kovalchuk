@@ -13,13 +13,15 @@ public class Main {
         Course Course = new Course();
 
         int categoryCreationQuestion = 1;
+        int exitCondition = 0;
 
         do{
             System.out.println("Яка категорія Вас цікавить?");
-            System.out.println(" 1 Курси");
-            System.out.println(" 2 Лекції");
-            System.out.println(" 3 Студенти");
-            System.out.println(" 4 Вчителі");
+            System.out.println(" 1 курси");
+            System.out.println(" 2 лекції");
+            System.out.println(" 3 студенти");
+            System.out.println(" 4 вчителі");
+            System.out.println(" 0 для виходу з програми");
 
             int category = scanner.nextInt();
 
@@ -47,54 +49,59 @@ public class Main {
                 System.out.println(teacherCategory);
                 categoryCreationQuestion = 2;
             }
+            else if (category == 0 ){
+                exitCondition = 1;
+                categoryCreationQuestion = 2;
+                System.out.println(" Вихід з програми");
+            }
             else {
-                System.out.println("Спробуйте ще раз");
+                System.out.println("Невірний номер, спробуйте ще раз");
             }
 
 
         } while ( categoryCreationQuestion == 1);
 
-
         int lectionCreationQuestion = 1;
         int lectionAmount = 0;
-        do {
-            System.out.println("Хочеш створити лекцію? " +
-                    "\n 1 Так" +
-                    "\n 2 Ні");
-            int scannerQuestion = scanner.nextInt();
 
-            if (scannerQuestion == 1){
-                System.out.println("Окей, як тоді назвемо лекцію?");
-                String lectionName = scanner.next();
+        if (exitCondition != 1){
+            do {
+                System.out.println("Хочеш створити лекцію? " +
+                        "\n 1 Створення лекції" +
+                        "\n 0 Вихід з програми");
+                int scannerQuestion = scanner.nextInt();
 
-                System.out.println("А домашнє завдання буде?");
-                String homeWork = scanner.next();
+                if (scannerQuestion == 1) {
+                    System.out.println("Окей, як тоді назвемо лекцію?");
+                    String lectionName = scanner.next();
 
-                System.out.println("Як щодо додаткових матеріалів?");
-                String additionalMaterials = scanner.next();
+                    System.out.println("А домашнє завдання буде?");
+                    String homeWork = scanner.next();
 
-                lectionAmount += 1;
+                    System.out.println("Як щодо додаткових матеріалів?");
+                    String additionalMaterials = scanner.next();
 
-                Lection lectionCreation = new Lection(lectionName,Course.id
-                        ,homeWork,additionalMaterials);
-                System.out.println("Лекція створенна!" +
-                        "\n" + lectionCreation +
-                    "це " + lectionAmount + " лекція!");
+                    lectionAmount += 1;
+
+                    Lection lectionCreation = new Lection(lectionName, Course.id,
+                            homeWork, additionalMaterials);
+                    System.out.println("Лекція створенна!" +
+                            "\n" + lectionCreation +
+                            ". Це " + lectionAmount + " лекція!");
+                } else if (scannerQuestion == 0) {
+                    lectionCreationQuestion = 2;
+                    System.out.println("Вихід з програми. Загальна кількість створених лекцій: " + lectionAmount);
+
+                } else {
+                    System.out.println("Ви щось не те обрали, спробуйте ще раз.");
+                }
+
+                if (lectionAmount == 8) {
+                    System.out.println("Ви створили максимальну кількість лекцій. Вихід з програми.");
+                    lectionCreationQuestion = 2;
+                }
             }
-            else if (scannerQuestion == 2){
-                lectionCreationQuestion = 2;
-                System.out.println("Ну добре, загальна кількість створених лекцій:" + lectionAmount);
-
-            }
-            else {
-                System.out.println("Ви щось не те обрали, спробуйте ще раз");
-            }
-
-            if(lectionAmount == 8){
-                System.out.println("Ви створили максимальну кількість лекцій");
-                lectionCreationQuestion = 2;
-            }
+            while (lectionCreationQuestion == 1);
         }
-        while (lectionCreationQuestion == 1);
     }
 }
