@@ -16,12 +16,12 @@ public class Main {
         int exitCondition = 0;
 
         do{
-            System.out.println("Яка категорія Вас цікавить?");
+            System.out.println("Вибір категорії:");
             System.out.println(" 1 курси");
             System.out.println(" 2 лекції");
             System.out.println(" 3 студенти");
             System.out.println(" 4 вчителі");
-            System.out.println(" 0 для виходу з програми");
+            System.out.println(" 0 вихід з програми");
 
             int category = scanner.nextInt();
 
@@ -55,7 +55,7 @@ public class Main {
                 System.out.println(" Вихід з програми");
             }
             else {
-                System.out.println("Невірний номер, спробуйте ще раз");
+                System.out.println("Неправильно обраний номер, спробуйте ще раз! \n");
             }
 
 
@@ -66,7 +66,7 @@ public class Main {
 
         if (exitCondition != 1){
             do {
-                System.out.println("Хочеш створити лекцію? " +
+                System.out.println("\nХочеш створити лекцію? " +
                         "\n 1 Створення лекції" +
                         "\n 0 Вихід з програми");
                 int scannerQuestion = scanner.nextInt();
@@ -90,14 +90,14 @@ public class Main {
                             ". Це " + lectionAmount + " лекція!");
                 } else if (scannerQuestion == 0) {
                     lectionCreationQuestion = 2;
-                    System.out.println("Вихід з програми. Загальна кількість створених лекцій: " + lectionAmount);
+                    System.out.println("\nВихід з програми. Загальна кількість створених лекцій: " + lectionAmount);
 
                 } else {
-                    System.out.println("Ви щось не те обрали, спробуйте ще раз.");
+                    System.out.println("Ви щось не те обрали, спробуйте ще раз.\n");
                 }
 
                 if (lectionAmount == 8) {
-                    System.out.println("Ви створили максимальну кількість лекцій. Вихід з програми.");
+                    System.out.println("\nВи створили максимальну кількість лекцій. Вихід з програми.");
                     lectionCreationQuestion = 2;
                 }
             }
