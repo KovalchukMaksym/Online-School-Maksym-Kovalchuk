@@ -10,6 +10,7 @@ public class CourseRepository {
         return courseArray;
     }
 
+
     public void addCourse (Course course){
         for (int i = 0; i < courseArray.length; i++) {
             if(courseArray[i] == null){

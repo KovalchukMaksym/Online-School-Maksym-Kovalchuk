@@ -15,6 +15,13 @@ public class Lection {
         counter++;
     }
 
+    public Lection(){
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
     @Override
     public String toString() {
         return "Lection{" +

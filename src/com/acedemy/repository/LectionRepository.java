@@ -4,11 +4,7 @@ import com.acedemy.cources.Lection;
 
 public class LectionRepository {
     private int arrayLength = 2;
-    private Lection[] lectionArray = new Lection[arrayLength];
-
-    public Lection[] getLectionArray() {
-        return lectionArray;
-    }
+    public Lection[] lectionArray = new Lection[arrayLength];
 
     public void addLection (Lection lection){
         for (int i = 0; i < lectionArray.length; i++) {
@@ -28,4 +24,10 @@ public class LectionRepository {
         System.arraycopy(lectionArray,0,tmpLectionArray,0,lectionArray.length);
         lectionArray = tmpLectionArray;
     }
+
+    public Lection[] getLectionArray() {
+        return lectionArray;
+    }
+
 }
+

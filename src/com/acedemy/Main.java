@@ -8,83 +8,24 @@ import com.acedemy.repository.CourseRepository;
 import com.acedemy.repository.LectionRepository;
 import com.acedemy.repository.StudentRepository;
 import com.acedemy.repository.TeacherRepository;
+import com.acedemy.services.CourseService;
+import com.acedemy.services.LectionService;
+import com.acedemy.utility.ExitUtility;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         Course course = new Course();
-
-
         LectionRepository lectionRepository = new LectionRepository();
-        CourseRepository courseRepository = new CourseRepository();
-        StudentRepository studentRepository = new StudentRepository();
-        TeacherRepository teacherRepository = new TeacherRepository();
+        LectionService lectionService = new LectionService();
+        Scanner scanner = new Scanner(System.in);
+        ExitUtility exitUtility = new ExitUtility();
+        Lection lection = new Lection();
 
-        courseRepository.addCourse(new Course("asdas",1,"asda","asdsad","asd"));
-        lectionRepository.addLection(new Lection("asd",1,"asda","asda"));
-        studentRepository.addStudent(new Student("",1,"",""));
-        teacherRepository.addTeacher(new Teacher("",1,"",""));
-
-
-
-        System.out.println(Arrays.toString(teacherRepository.getTeacherArray()));
-
-        /* int categoryCreationQuestion = 1;
-        int exitCondition = 0;
-
-        do{
-            System.out.println("Вибір категорії:");
-            System.out.println(" 1 курси");
-            System.out.println(" 2 лекції");
-            System.out.println(" 3 студенти");
-            System.out.println(" 4 вчителі");
-            System.out.println(" 0 вихід з програми");
-
-            int category = scanner.nextInt();
-
-            if (category == 1){
-                Course courseCategory = new Course("Course", 1, "teacher",
-                        "Student", "Lection");
-                System.out.println(courseCategory);
-                categoryCreationQuestion = 2;
-            }
-            else if (category == 2){
-                Lection lectionCategory = new Lection("Lection", 1, "Home work",
-                        "Additional materials");
-                System.out.println(lectionCategory);
-                categoryCreationQuestion = 2;
-            }
-            else if (category == 3) {
-                Student studentCategory = new Student("Student", 1, "Home work",
-                        "Additional materials");
-                System.out.println(studentCategory);
-                categoryCreationQuestion = 2;
-            }
-            else if (category == 4){
-                Teacher teacherCategory = new Teacher("Teacher", 1, "Home Work",
-                        "Additional materials");
-                System.out.println(teacherCategory);
-                categoryCreationQuestion = 2;
-            }
-            else if (category == 0 ){
-                exitCondition = 1;
-                categoryCreationQuestion = 2;
-                System.out.println(" Вихід з програми");
-            }
-            else {
-                System.out.println("Неправильно обраний номер, спробуйте ще раз! \n");
-            }
-
-
-        } while ( categoryCreationQuestion == 1);
-
-        int lectionCreationQuestion = 1;
-        int lectionAmount = 0;
-
-        if (exitCondition != 1){
+        boolean lectionCreationBoolean = true;
+        if (exitUtility.getExitBoolean() == false) {
             do {
                 System.out.println("\nХочеш створити лекцію? " +
                         "\n 1 Створення лекції" +
@@ -101,27 +42,138 @@ public class Main {
                     System.out.println("Як щодо додаткових матеріалів?");
                     String additionalMaterials = scanner.next();
 
-                    lectionAmount += 1;
 
-                    Lection lectionCreation = new Lection(lectionName, Course.id,
-                            homeWork, additionalMaterials);
+                    lectionRepository.addLection(new Lection(lectionName,course.ID,homeWork,additionalMaterials));
                     System.out.println("Лекція створенна!" +
-                            "\n" + lectionCreation +
-                            ". Це " + lectionAmount + " лекція!");
+                            "\n" +
+                            ". Це " + lection.getCounter() + " лекція!");
+
                 } else if (scannerQuestion == 0) {
-                    lectionCreationQuestion = 2;
-                    System.out.println("\nВихід з програми. Загальна кількість створених лекцій: " + lectionAmount);
+                    lectionCreationBoolean = false;
+                    System.out.println("\nВихід з програми. Загальна кількість створених лекцій: " + lection.getCounter());
 
                 } else {
                     System.out.println("Ви щось не те обрали, спробуйте ще раз.\n");
                 }
 
-                if (lectionAmount == 8) {
+                if (lection.getCounter() == 8) {
                     System.out.println("\nВи створили максимальну кількість лекцій. Вихід з програми.");
-                    lectionCreationQuestion = 2;
+                    lectionCreationBoolean = false;
                 }
             }
-            while (lectionCreationQuestion == 1);
-        }*/
+            while (lectionCreationBoolean == true);
+        }
+
+        System.out.println(Arrays.toString(lectionRepository.getLectionArray()));
+        lectionService.allLectionsArray();
+    }
+
+
+    public static void сategoryCreation(){
+        Scanner scanner = new Scanner(System.in);
+        ExitUtility exitUtility = new ExitUtility();
+        Course course = new Course();
+
+        boolean categoryCreationBoolean = true;
+
+        do{
+            System.out.println("Вибір категорії:");
+            System.out.println(" 1 курси");
+            System.out.println(" 2 лекції");
+            System.out.println(" 3 студенти");
+            System.out.println(" 4 вчителі");
+            System.out.println(" 0 вихід з програми");
+
+            int category = scanner.nextInt();
+
+            if (category == 1){
+                CourseRepository courseRepository = new CourseRepository();
+                Course courseCategory = new Course("Course", course.ID, "teacher",
+                        "Student", "Lection");
+                System.out.println(courseCategory);
+                categoryCreationBoolean = false;
+            }
+            else if (category == 2){
+                Lection lectionCategory = new Lection("Lection", course.ID, "Home work",
+                        "Additional materials");
+                System.out.println(lectionCategory);
+                categoryCreationBoolean = false;
+            }
+            else if (category == 3) {
+                Student studentCategory = new Student("Student", 1, "Home work",
+                        "Additional materials");
+                System.out.println(studentCategory);
+                categoryCreationBoolean = false;
+            }
+            else if (category == 4){
+                Teacher teacherCategory = new Teacher("Teacher", 1, "Home Work",
+                        "Additional materials");
+                System.out.println(teacherCategory);
+                categoryCreationBoolean = false;
+            }
+            else if (category == 0 ){
+                exitUtility.setExitBoolean(true);
+                categoryCreationBoolean = false;
+                System.out.println(" Вихід з програми");
+            }
+            else {
+                System.out.println("Неправильно обраний номер, спробуйте ще раз! \n");
+            }
+
+
+        } while (categoryCreationBoolean == true);
+    }
+
+
+    private static void lectureCreation() {
+        Scanner scanner = new Scanner(System.in);
+        ExitUtility exitUtility = new ExitUtility();
+        Lection lection = new Lection();
+        Course course = new Course();
+        LectionRepository lectionRepository = new LectionRepository();
+
+
+        boolean lectionCreationBoolean = true;
+
+        if (exitUtility.getExitBoolean() == false) {
+            do {
+                System.out.println("\nХочеш створити лекцію? " +
+                        "\n 1 Створення лекції" +
+                        "\n 0 Вихід з програми");
+                int scannerQuestion = scanner.nextInt();
+
+                if (scannerQuestion == 1) {
+                    System.out.println("Окей, як тоді назвемо лекцію?");
+                    String lectionName = scanner.next();
+
+                    System.out.println("А домашнє завдання буде?");
+                    String homeWork = scanner.next();
+
+                    System.out.println("Як щодо додаткових матеріалів?");
+                    String additionalMaterials = scanner.next();
+
+
+                    lectionRepository.addLection(new Lection(lectionName,course.ID,homeWork,additionalMaterials));
+                    System.out.println("Лекція створенна!" +
+                            "\n" +
+                            ". Це " + lection.getCounter() + " лекція!");
+                    System.out.println(Arrays.toString(lectionRepository.getLectionArray()));
+
+                } else if (scannerQuestion == 0) {
+                    lectionCreationBoolean = false;
+                    System.out.println("\nВихід з програми. Загальна кількість створених лекцій: " + lection.getCounter());
+
+                } else {
+                    System.out.println("Ви щось не те обрали, спробуйте ще раз.\n");
+                }
+
+                if (lection.getCounter() == 8) {
+                    System.out.println("\nВи створили максимальну кількість лекцій. Вихід з програми.");
+                    lectionCreationBoolean = false;
+                }
+            }
+            while (lectionCreationBoolean == true);
+        }
+
     }
 }

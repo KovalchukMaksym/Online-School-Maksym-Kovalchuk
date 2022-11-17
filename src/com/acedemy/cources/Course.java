@@ -6,9 +6,9 @@ public class Course {
     private String teacher;
     private String student;
     private String lection;
+    public static int ID = 0;
 
     public Course() {
-        id++;
     }
 
 
@@ -18,6 +18,7 @@ public class Course {
         this.teacher = teacher;
         this.student = student;
         this.lection = lection;
+        ID++;
     }
 
     @Override
