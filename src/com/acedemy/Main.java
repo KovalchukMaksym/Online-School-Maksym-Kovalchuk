@@ -4,15 +4,35 @@ import com.acedemy.cources.Course;
 import com.acedemy.cources.Lection;
 import com.acedemy.cources.Student;
 import com.acedemy.cources.Teacher;
+import com.acedemy.repository.CourseRepository;
+import com.acedemy.repository.LectionRepository;
+import com.acedemy.repository.StudentRepository;
+import com.acedemy.repository.TeacherRepository;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Course Course = new Course();
+        Course course = new Course();
 
-        int categoryCreationQuestion = 1;
+
+        LectionRepository lectionRepository = new LectionRepository();
+        CourseRepository courseRepository = new CourseRepository();
+        StudentRepository studentRepository = new StudentRepository();
+        TeacherRepository teacherRepository = new TeacherRepository();
+
+        courseRepository.addCourse(new Course("asdas",1,"asda","asdsad","asd"));
+        lectionRepository.addLection(new Lection("asd",1,"asda","asda"));
+        studentRepository.addStudent(new Student("",1,"",""));
+        teacherRepository.addTeacher(new Teacher("",1,"",""));
+
+
+
+        System.out.println(Arrays.toString(teacherRepository.getTeacherArray()));
+
+        /* int categoryCreationQuestion = 1;
         int exitCondition = 0;
 
         do{
@@ -102,6 +122,6 @@ public class Main {
                 }
             }
             while (lectionCreationQuestion == 1);
-        }
+        }*/
     }
 }

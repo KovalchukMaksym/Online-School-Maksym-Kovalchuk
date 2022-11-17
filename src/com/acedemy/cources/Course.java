@@ -8,8 +8,11 @@ public class Course {
     private String lection;
 
     public Course() {
+        id++;
     }
-    public Course (String courseName,int id, String teacher, String student, String lection){
+
+
+    public Course (String courseName, int id, String teacher, String student, String lection){
         this.courseName = courseName;
         this.id = id;
         this.teacher = teacher;
