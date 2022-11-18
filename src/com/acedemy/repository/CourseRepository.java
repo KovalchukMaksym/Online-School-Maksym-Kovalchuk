@@ -29,4 +29,12 @@ public class CourseRepository {
         System.arraycopy(courseArray,0,tmpCourseArray,0,courseArray.length);
         courseArray = tmpCourseArray;
     }
+
+    public void printFirstArray(){
+        System.out.println(courseArray[0]);
+    }
+
+    public Course getArray(int i){
+        return courseArray[i];
+    }
 }

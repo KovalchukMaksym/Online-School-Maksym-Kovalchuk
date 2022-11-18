@@ -27,4 +27,8 @@ public class TeacherRepository {
     public Teacher[] getTeacherArray() {
         return teacherArray;
     }
+
+    public void printFirstArray(){
+        System.out.println(teacherArray[0]);
+    }
 }

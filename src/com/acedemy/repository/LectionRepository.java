@@ -29,5 +29,12 @@ public class LectionRepository {
         return lectionArray;
     }
 
+    public void printFirstArray(){
+        System.out.println(lectionArray[0]);
+    }
+
+    public Lection getArray(int i){
+        return lectionArray[i];
+    }
 }
 

@@ -29,4 +29,7 @@ public class StudentRepository {
         return studentArray;
     }
 
+    public void printFirstArray(){
+        System.out.println(studentArray[0]);
+    }
 }

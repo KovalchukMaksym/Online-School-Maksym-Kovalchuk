@@ -5,12 +5,15 @@ public class Student {
     private Integer id;
     private String homeWork;
     private String additionalMaterials;
+    public static int counter;
+
 
     public Student(String students, Integer id, String homeWork, String additionalMaterials) {
         this.students = students;
         this.id = id;
         this.homeWork = homeWork;
         this.additionalMaterials = additionalMaterials;
+        counter++;
     }
 
     @Override

@@ -6,7 +6,10 @@ public class Course {
     private String teacher;
     private String student;
     private String lection;
-    public static int ID = 0;
+    public static int ID;
+    public static int counter;
+
+
 
     public Course() {
     }
@@ -19,16 +22,21 @@ public class Course {
         this.student = student;
         this.lection = lection;
         ID++;
+        counter++;
     }
 
     @Override
     public String toString() {
         return "Course{" +
                 "courseName='" + courseName + '\'' +
-                ", id=" + id +
+                ", id=" + ID +
                 ", teacher='" + teacher + '\'' +
                 ", student='" + student + '\'' +
                 ", lection='" + lection + '\'' +
                 '}';
+    }
+
+    public int getCounter() {
+        return counter;
     }
 }
